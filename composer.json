@@ -3,7 +3,10 @@
     "type": "project",
     "description": "Digital health platform - API backend",
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
+        "ext-intl": "*",
+        "ext-zip": "*",
+        "ext-exif": "*",
         "laravel/framework": "^11.0",
         "laravel/sanctum": "^4.0",
         "laravel/scout": "^10.0",

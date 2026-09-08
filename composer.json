@@ -3,7 +3,7 @@
     "type": "project",
     "description": "Digital health platform - API backend",
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "ext-intl": "*",
         "ext-zip": "*",
         "ext-exif": "*",

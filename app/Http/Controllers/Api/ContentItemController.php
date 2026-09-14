@@ -17,13 +17,14 @@ class ContentItemController extends Controller
         $validated = $request->validate([
             'type' => 'nullable|string|in:' . implode(',', ContentItem::TYPES),
             'category' => 'nullable|string',
+            'section' => 'nullable|string',
             'tag' => 'nullable|string',
             'per_page' => 'nullable|integer|min:1|max:50',
         ]);
 
         $query = ContentItem::query()
             ->published()
-            ->with(['category', 'author', 'tags'])
+            ->with(['category.section', 'author', 'tags'])
             ->latest('published_at');
 
         if (!empty($validated['type'])) {
@@ -32,6 +33,10 @@ class ContentItemController extends Controller
 
         if (!empty($validated['category'])) {
             $query->inCategory($validated['category']);
+        }
+
+        if (!empty($validated['section'])) {
+            $query->whereHas('category.section', fn ($q) => $q->where('slug', $validated['section']));
         }
 
         if (!empty($validated['tag'])) {

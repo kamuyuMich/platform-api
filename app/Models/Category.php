@@ -25,4 +25,9 @@ class Category extends Model
     {
         return $this->hasMany(ContentItem::class);
     }
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\SectionController; 
 use App\Http\Controllers\Api\ContentItemController;
 use App\Http\Controllers\Api\NewsletterController;
 use App\Http\Controllers\Api\SearchController;
@@ -27,3 +28,5 @@ Route::post('/newsletter/unsubscribe', [NewsletterController::class, 'unsubscrib
 
 Route::post('/contact', [ContactController::class, 'store'])
     ->middleware('throttle:5,1');
+
+Route::get('/sections', [SectionController::class, 'index'])->name('sections.index');

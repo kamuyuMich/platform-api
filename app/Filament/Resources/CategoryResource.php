@@ -31,16 +31,15 @@ class CategoryResource extends Resource
                 ->maxLength(255)
                 ->unique(ignoreRecord: true),
 
-            Forms\Components\Select::make('section')
-                ->options([
-                    'digital_health' => 'Digital Health',
-                    'ai' => 'AI',
-                    'data' => 'Data',
-                    'africa' => 'Africa',
-                    'general' => 'General',
+            Forms\Components\Select::make('section_id')
+                ->label('Section')
+                ->relationship('section', 'name')
+                ->searchable()
+                ->preload()
+                ->createOptionForm([
+                    Forms\Components\TextInput::make('name')->required(),
+                    Forms\Components\ColorPicker::make('color')->default('#1B4B4B'),
                 ])
-                ->default('general')
-                ->required()
                 ->native(false),
 
             Forms\Components\Textarea::make('description')

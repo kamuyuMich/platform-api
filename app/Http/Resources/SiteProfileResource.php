@@ -10,6 +10,7 @@ class SiteProfileResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'site_name' => $this->site_name,
             'name' => $this->name,
             'credentials' => $this->credentials,
             'title' => $this->title,

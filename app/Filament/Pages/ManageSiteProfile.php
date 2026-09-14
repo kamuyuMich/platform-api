@@ -42,6 +42,10 @@ class ManageSiteProfile extends Page implements HasForms
                 Forms\Components\Section::make('Basic info')
                     ->columns(2)
                     ->schema([
+                        Forms\Components\TextInput::make('site_name')
+                            ->label('Website name')
+                            ->helperText('Shown in the navigation bar and browser tab.')
+                            ->columnSpan(2),
                         Forms\Components\TextInput::make('name')->required()->columnSpan(2),
                         Forms\Components\TextInput::make('credentials')
                             ->placeholder('e.g. MBChB, MPH'),

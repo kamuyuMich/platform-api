@@ -14,7 +14,7 @@ class SiteProfile extends Model implements HasMedia
     protected $table = 'site_profile';
 
     protected $fillable = [
-        'name', 'credentials', 'title', 'bio', 'short_bio', 'years_experience',
+        'site_name', 'name', 'credentials', 'title', 'bio', 'short_bio', 'years_experience',
         'specialties', 'email', 'phone', 'linkedin_url', 'twitter_url',
         'youtube_url', 'booking_url',
     ];

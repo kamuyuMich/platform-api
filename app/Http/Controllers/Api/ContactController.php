@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NewContactMessage;
 use App\Models\ContactMessage;
+use App\Models\SiteProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-    /**
-     * POST /api/contact
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -21,7 +21,12 @@ class ContactController extends Controller
             'message' => 'required|string|max:5000',
         ]);
 
-        ContactMessage::create($validated);
+        $contactMessage = ContactMessage::create($validated);
+
+        $notifyEmail = SiteProfile::current()->email;
+        if ($notifyEmail) {
+            Mail::to($notifyEmail)->send(new NewContactMessage($contactMessage));
+        }
 
         return response()->json([
             'message' => 'Thanks for reaching out - we will get back to you soon.',
